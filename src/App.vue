@@ -3,7 +3,8 @@
     <!-- 顶部 -->
     <mt-header fixed title="Vue项目测试"></mt-header>
     <!-- 内容 -->
-    <router-view></router-view>
+    <transition ><router-view></router-view></transition>
+
 
     <!-- 底部 -->
     <nav class="mui-bar mui-bar-tab">
@@ -39,6 +40,21 @@
 <style lang="scss" scoped>
 .all{
   padding-top: 40px;
+  overflow-x:hidden;
+}
+.v-enter{
+  opacity: 0;
+  transform: translateX(100%);
+}
+.v-leave-to{
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;//相对于mode="out-in"等待  来说有一种淡入淡出的感觉
+}
+.v-enter-active,
+.v-leave-active{
+  transition: all .5s ease;
+
 }
 
 </style>

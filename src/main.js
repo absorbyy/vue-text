@@ -4,6 +4,9 @@ import Vue from 'vue'
 // TODO: 路由模块导入
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
+// TODO: 请求导入
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 import router from './router.js'
 // MUI引用
 import './lib/mui/css/mui.min.css'
