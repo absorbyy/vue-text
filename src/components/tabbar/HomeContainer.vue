@@ -11,9 +11,9 @@
 
     <!-- 九宫格？ -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newslist">
 		                    <img src="../../images/menu1.png" alt="">
-		                    <div class="mui-media-body">新闻资讯</div></a></li>
+		                    <div class="mui-media-body">新闻资讯</div></router-link></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                         <img src="../../images/menu2.png" alt="">
 		                    <div class="mui-media-body">图片分享</div></a></li>
@@ -67,13 +67,18 @@ export default {
 .mint-swipe{
 height: 300px
 }
+.mint-swipe-items-wrap div{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .mint-swipe-items-wrap div:nth-of-type(1){
-background-color:rgb(104, 186, 31)
+background-image: url("../../images/lun1.jpg");
+
 }.mint-swipe-items-wrap div:nth-of-type(2){
-background-color:rgb(212, 19, 19)
+background-image: url("../../images/lun2.jpg");
 }
 .mint-swipe-items-wrap div:nth-of-type(3){
-background-color:rgb(186, 31, 121)
+background-image: url("../../images/lun3.jpg");
 }
 .mui-grid-view.mui-grid-9{
   background-color: white;
