@@ -1,19 +1,22 @@
-<template>
-  <div>
-    <cmtbox :id="$route.params.id"></cmtbox>
+<template lang="html">
+  <div class="GoodsComment-container">
+    <comments :id="id"></comments>
   </div>
 </template>
 
 <script>
-import cmtbox from "../subcomponents/comment.vue";
-
+import comments from "../subcomponents/comment.vue"
 export default {
-  components: {
-    cmtbox
+  data(){
+    return{
+      id:this.$route.params.id
+    }
+  },
+  components:{
+    comments
   }
-};
+}
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="css" scoped>
 </style>

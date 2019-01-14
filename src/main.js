@@ -43,6 +43,8 @@ Vue.component('comment',comment);
 // MUI引用
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
+import './lib/mui/css/icons-extra.css'
+// import mui from "./lib/mui/js/mui.min.js";
 
 //mint-ui 样式引用
 // import { Header,Swipe, SwipeItem,Button} from 'mint-ui';

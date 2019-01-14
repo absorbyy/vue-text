@@ -1,53 +1,72 @@
 <template lang="html">
 <div class="goodList-container">
-<div class="item">
-  <img src="http://demo.dtcms.net/upload/201504/20/thumb_201504200046589514.jpg" alt="">
-  <h1>华为（HUAWEI）荣耀6Plus 16G双4G版</h1>
+<!-- <router-link class="item" v-for="item in list" :key="item.id" >
+  <img :src="item.img_url" alt="">
+  <h1>{{item.title}}</h1>
   <div class="bottom">
     <p>
-      <span class="color-red">￥222</span>
-      <span class="old">￥1222</span>
+      <span class="color-red">{{item.sell_price}}</span>
+      <span class="old">{{item.market_price}}</span>
     </p>
-    <p class="second">
+    <p class="second" >
       <span>热卖中</span>
-      <span>还剩 60 件</span>
+      <span>还剩 {{item.stock_quantity}} 件</span>
     </p>
   </div>
-</div>
-<div class="item">
-  <img src="http://demo.dtcms.net/upload/201504/20/thumb_201504200046589514.jpg" alt="">
-  <h1>华为（HUAWEI）荣耀6Plus 16G双4G版dfdsfdsfdsfdsfsdf</h1>
+</router-link> -->
+<div class="item" v-for="item in list" :key="item.id" @click="tohtml(item.id)">
+  <img :src="item.img_url" alt="">
+  <h1>{{item.title}}</h1>
   <div class="bottom">
     <p>
-      <span class="color-red">￥222</span>
-      <span class="old">￥1222</span>
+      <span class="color-red">{{item.sell_price}}</span>
+      <span class="old">{{item.market_price}}</span>
     </p>
-    <p class="second">
+    <p class="second" >
       <span>热卖中</span>
-      <span>还剩 60 件</span>
+      <span>还剩 {{item.stock_quantity}} 件</span>
     </p>
-  </div>
 </div>
-<div class="item">
-  <img src="http://demo.dtcms.net/upload/201504/20/thumb_201504200046589514.jpg" alt="">
-  <h1>华为（HUAWEI）荣耀6Plus 16G双4G版</h1>
-  <div class="bottom">
-    <p>
-      <span class="color-red">￥222</span>
-      <span class="old">￥1222</span>
-    </p>
-    <p class="second">
-      <span>热卖中</span>
-      <span>还剩 60 件</span>
-    </p>
-  </div>
 </div>
-
+<mt-button style="margin-top:30px"  type="danger" size="large" @click="getMore">加载更多</mt-button>
 </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      page:1,
+      list:[],
+
+    }
+  },
+  created(){
+    this.getGoodsList()
+  },
+  methods:{
+    getGoodsList(){
+      this.$http.get("api/getgoods?pageindex="+this.page)
+      .then(result=>{
+        console.log(result.body);
+        if(result.body.status===0){
+          this.list=this.list.concat(result.body.message)
+        }
+      })
+    },
+    getMore(){
+      this.page++;
+      this.getGoodsList();
+    },
+    tohtml(id){
+      // 1. 最简单的
+      // this.$router.push("/home/goodsinfo/" + id);
+      // 2. 传递对象
+      // this.$router.push({ path: "/home/goodsinfo/" + id });
+      // 3. 传递命名的路由
+      this.$router.push({ name: "goodsinfo", params: { id } });
+    },
+  }
 }
 </script>
 
@@ -79,7 +98,8 @@ justify-content: space-between;
   width: 100%
 }
 .goodList-container .item h1{
-  font-size: 16px
+  font-size: 16px;
+  color: black;
 }
 .goodList-container .item  .bottom{
   background-color: rgba(187, 222, 205, 0.47);
