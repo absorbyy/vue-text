@@ -1,7 +1,11 @@
 <template>
   <div class="all">
     <!-- 顶部 -->
-    <mt-header fixed title="Vue项目测试"></mt-header>
+    <mt-header fixed title="Vue项目测试">
+      <span  slot="left"  @click="comeBack">
+        <mt-button icon="back" v-show="c">返回</mt-button>
+      </span>
+    </mt-header>
     <!-- 内容 -->
     <transition ><router-view></router-view></transition>
 
@@ -18,7 +22,7 @@
 			</router-link>
 			<router-link class="mui-tab-item1" to="/shopcar">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge" id="badge">0</span>
+          <span class="mui-badge" id="badge">{{$store.getters.carcont}}</span>
         </span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
@@ -34,6 +38,27 @@
 </template>
 
 <script>
+export default{
+  data(){
+    return{
+      c:true
+    }
+  },
+  methods:{
+    comeBack(){
+      this.$router.go(-1)
+    }
+  },
+  watch:{
+    '$route'(newval,oldval){
+      if(newval.path==="/home"){
+        this.c=false
+      }else{
+        this.c=true
+      }
+    }
+  }
+}
 </script>
 
 

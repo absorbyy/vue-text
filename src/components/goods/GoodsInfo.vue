@@ -110,6 +110,13 @@ export default {
     },
     addCar(){
       this.ballFlag=!this.ballFlag
+      var addcarinfo={
+        id:this.id,
+        count:this.shopAmount,
+        selected:true,
+        price:this.goodsinfo.sell_price
+      }
+      this.$store.commit('addcar',addcarinfo)
     },
     beforeEnter(el){  el.style.transform="translate(0,0)"},
     enter(el,done){
